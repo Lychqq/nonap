@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nonap"
+version = "0.1.0"
+description = "Zero-overhead event loop block detector and watchdog for FastAPI and ASGI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Lychqq" }
+]
+urls = { "Homepage" = "https://github.com/Lychqq/nonap", "Repository" = "https://github.com/Lychqq/nonap" }
+keywords = ["fastapi", "asyncio", "asgi", "event-loop", "profiling", "performance", "watchdog"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "fastapi",
+    "pydantic>=2.0",
+    "pydantic-settings",
+    "starlette",
+    "rich",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.24.0",
+    "uvicorn>=0.22.0",
+]
+
+[project.entry-points.pytest11]
+nonap = "nonap.pytest_plugin"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["nonap"]
